@@ -22,14 +22,8 @@ export default {
       this.itemList.push(data);
       this.quantity++;
       this.sum+=data.price.value*100;
-      console.log(this.itemList);
     });
      
-  },
-  destroyed () {
-    window.removeEventListener('scroll', (data)=>{
-      console.log(data);
-    });
   }
 }
 </script>
@@ -37,10 +31,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #cart{
+  position: fixed;
   width: 200px;
   height: 100px;
   background-color: gold;
   border-radius: 15px;
+  top:0;
   right: 0;
   margin: 10px;
   margin-left: auto;

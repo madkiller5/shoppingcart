@@ -32,6 +32,9 @@ const router = new VueRouter({
 Vue.filter('price-convert',function(value){
   return value/100;
 });
+Vue.filter('firstLetterUpperCase',function(value){
+  return value[0].toUpperCase() + value.slice(1);
+})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
