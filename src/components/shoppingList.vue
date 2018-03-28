@@ -13,7 +13,7 @@
       <p class="details">Gatunek: {{ item.species }}</p>
       <p class="details">Słód: {{ item.malts }}</p>
       <p class="details">Chmiel: {{ item.hop }}</p>
-      <p class="details">Kraj pochodzenia {{ item.origin }}</p>
+      <p class="details">Kraj pochodzenia: {{ item.origin }}</p>
       <p class="details">Smak: {{ item.flavours }}</p>
     </div>
   </div>

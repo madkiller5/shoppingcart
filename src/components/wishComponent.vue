@@ -49,7 +49,7 @@ export default {
   top:0;
   right: 0;
   margin-left: auto;
-  margin-right: 400px;
+  margin-right: 300px;
   padding: 5px;
 }
 #wish:hover{

@@ -51,7 +51,7 @@ export default {
   box-sizing: border-box;
   opacity: 0.5;
   position: fixed;
-  width: 400px;
+  width: 300px;
   background: radial-gradient(rgb(140, 189, 140),rgb(47, 88, 47));
   border-radius: 15px;
   top:0;
