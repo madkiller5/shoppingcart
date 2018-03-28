@@ -2,7 +2,7 @@
   <div id="wish">
     <p>Wishlista</p>
     <ul>
-      <li v-for="item in itemList">{{item.name | firstLetterUpperCase}} <span class="deleteSign"  v-on:click="deleteItem(item)"><font-awesome-icon icon="times-circle" /></span></li>
+      <li v-for="(item,index) in itemList" :key="index">{{item.name | firstLetterUpperCase}} <span class="deleteSign"  v-on:click="deleteItem(item)"><font-awesome-icon icon="times-circle" /></span></li>
     </ul>
   </div>
 </template>
@@ -11,7 +11,6 @@
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import { faCoffee } from '@fortawesome/fontawesome-free-solid'
 import { bus } from '../main'
-
 
 export default {
   name: 'wish',
@@ -66,7 +65,6 @@ export default {
   float: right;
   margin-right: 20px;
 }
-
 ul{
   box-sizing: border-box;
   overflow: scroll;

@@ -4,7 +4,7 @@
     <p>Ilosc: {{quantity}}</p>
     <p>Razem: {{sum | price-convert | math-decimal}} zł</p>
     <ul>
-      <li v-for="item in itemList">{{item.name | firstLetterUpperCase }} {{item.price.value | math-decimal}} zł<span class="deleteSign"  v-on:click="deleteItem(item)"><font-awesome-icon icon="times-circle" /></span></li>
+      <li v-for="(item, index) in itemList" :key="index">{{item.name | firstLetterUpperCase }} {{item.price.value | math-decimal}} zł<span class="deleteSign"  v-on:click="deleteItem(item)"><font-awesome-icon icon="times-circle" /></span></li>
     </ul>
   </div>
 </template>
@@ -13,6 +13,7 @@
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import { faCoffee } from '@fortawesome/fontawesome-free-solid'
 import { bus } from '../main'
+
 export default {
   name: 'cart',
   components: {
@@ -31,7 +32,6 @@ export default {
       this.itemList.splice(this.itemList.indexOf(item),1);
       this.quantity--;
       bus.$emit('returnItem',item);
-
     }
   },
   created() {
@@ -73,7 +73,6 @@ export default {
   float: right;
   margin-right: 20px;
 }
-
 ul{
   box-sizing: border-box;
   overflow: scroll;

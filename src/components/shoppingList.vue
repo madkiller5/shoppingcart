@@ -1,6 +1,6 @@
 <template>
   <div id="shoppingList">
-    <div v-for="item in itemsList" class="item">
+    <div class="item" v-for="(item,index) in itemsList" :key="index">
       <p v-on:click="hideItem(item)" class="hideButton"><font-awesome-icon icon="times-circle" /></p>
       <img :src="'../../static/products/'+ item.image" >
       <p>Produkt: {{ item.name | firstLetterUpperCase}}</p>
