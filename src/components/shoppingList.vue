@@ -5,17 +5,17 @@
       <img :src="'../../static/products/'+ item.image" >
       <p>Produkt: {{ item.name | firstLetterUpperCase}}</p>
       <p class="price" v-bind:class="{special: ifSpecial(item)}">Cena: {{ item.price.value | math-decimal }} zł</p>
-      <button class="addCartButton" @click="addCart(item)" :disabled="!isAvailable(item)"><font-awesome-icon icon="plus-circle" /> Add to cart</button>
-      <button class="addWishlistButton" @click="addWish(item)"><font-awesome-icon icon="plus-circle" /> Add to wishlist</button>
-      <p class="notAvailable" v-if="!isAvailable(item)">Item not available</p>
-      <p class="available" v-else>Item available</p>
+      <button class="addCartButton" @click="addCart(item)" :disabled="!isAvailable(item)"><font-awesome-icon icon="plus-circle" /> Dodaj do koszyka</button>
+      <button class="addWishlistButton" @click="addWish(item)"><font-awesome-icon icon="plus-circle" /> Dodaj do wishlisty</button>
+      <p class="notAvailable" v-if="!isAvailable(item)">Produkt niedostępny</p>
+      <p class="available" v-else>Produkt dostępny</p>
       <p class="details">Browar: {{ item.brewery }}</p>
       <p class="details">Gatunek: {{ item.species }}</p>
       <p class="details">Słód: {{ item.malts }}</p>
       <p class="details">Chmiel: {{ item.hop }}</p>
       <p class="details">Kraj pochodzenia: {{ item.origin }}</p>
       <p class="details">Smak: {{ item.flavours }}</p>
-      
+
     </div>
   </div>
 </template>
