@@ -1,10 +1,8 @@
 <template>
-  <div id="cart">
-    <p>Koszyk</p>
-    <p>Ilosc: {{quantity}}</p>
-    <p>Razem: {{sum | price-convert}} zł</p>
+  <div id="wish">
+    <p>Wishlista</p>
     <ul>
-      <li v-for="item in itemList">{{item.name | firstLetterUpperCase }} {{item.price.value | math-decimal}} zł<span class="deleteSign"  v-on:click="deleteItem(item)"><font-awesome-icon icon="times-circle" /></span></li>
+      <li v-for="item in itemList">{{item.name | firstLetterUpperCase}} <span class="deleteSign"  v-on:click="deleteItem(item)"><font-awesome-icon icon="times-circle" /></span></li>
     </ul>
   </div>
 </template>
@@ -13,32 +11,27 @@
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import { faCoffee } from '@fortawesome/fontawesome-free-solid'
 import { bus } from '../main'
+
+
 export default {
-  name: 'cart',
+  name: 'wish',
   components: {
     FontAwesomeIcon
   },
   data () {
     return {
       itemList: [],
-      quantity: 0,
-      sum: 0
     }
   },
   methods:{
     deleteItem: function(item){
-      this.sum-= item.price.value*100;
       this.itemList.splice(this.itemList.indexOf(item),1);
-      this.quantity--;
-      bus.$emit('returnItem',item);
-
     }
   },
   created() {
-    bus.$on('addItem',data =>{
-      this.itemList.push(data);
-      this.quantity++;
-      this.sum+=data.price.value*100;
+    bus.$on('addWish',data =>{
+      if(this.itemList.indexOf(data) == -1)
+        this.itemList.push(data);
     });
      
   }
@@ -47,25 +40,25 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-#cart{
-  box-sizing: border-box;
+#wish{
   opacity: 0.5;
   position: fixed;
-  width: 400px;
-  background: radial-gradient(rgb(140, 189, 140),rgb(47, 88, 47));
+  width: 200px;
+  background: radial-gradient(rgb(140, 141, 189),rgb(47, 54, 88));
   border-radius: 15px;
   top:0;
   right: 0;
   margin-left: auto;
+  margin-right: 400px;
   padding: 5px;
 }
-#cart:hover{
+#wish:hover{
   opacity: 1.0;
 }
-#cart p{
+#wish p{
   margin: 10px;
 }
-#cart p:first-child{
+#wish p:first-child{
   font-weight: bold;
 }
 .deleteSign{
@@ -81,7 +74,7 @@ ul{
   height: 200px;
   text-align: left;
 }
-#cart:hover ul{
+#wish:hover ul{
   display: block;
 }
 </style>

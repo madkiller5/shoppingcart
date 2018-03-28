@@ -34,7 +34,29 @@ Vue.filter('price-convert',function(value){
 });
 Vue.filter('firstLetterUpperCase',function(value){
   return value[0].toUpperCase() + value.slice(1);
-})
+});
+Vue.filter('math-decimal',function(value){
+  value = value.toString();
+  switch(value.length){
+    case 1:
+    case 2:
+      return value+".00";
+      break;
+    case 3:
+      return value+"0";
+      break;
+    default:
+      return value;
+      break;
+  }
+  
+});
+Math.decimal = function(n, k) 
+{
+    var factor = Math.pow(10, k+1);
+    n = Math.round(Math.round(n*factor)/10);
+    return n/(factor/10);
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

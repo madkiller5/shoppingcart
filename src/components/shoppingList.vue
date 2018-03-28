@@ -4,11 +4,11 @@
       <p v-on:click="hideItem(item)" class="hideButton"><font-awesome-icon icon="times-circle" /></p>
       <img :src="'../../static/products/'+ item.image" >
       <p>Produkt: {{ item.name | firstLetterUpperCase}}</p>
-      <p v-bind:class="{special: ifSpecial(item)}">Cena: {{ item.price.value }}</p>
+      <p class="price" v-bind:class="{special: ifSpecial(item)}">Cena: {{ item.price.value | math-decimal }} zł</p>
       <button class="addCartButton" @click="addCart(item)" :disabled="!isAvailable(item)"><font-awesome-icon icon="plus-circle" /> Add to cart</button>
-      <button class="addWishlistButton"><font-awesome-icon icon="plus-circle" /> Add to wishlist</button>
+      <button class="addWishlistButton" @click="addWish(item)"><font-awesome-icon icon="plus-circle" /> Add to wishlist</button>
       <p class="notAvailable" v-if="!isAvailable(item)">Item not available</p>
-      <p v-else>_</p>
+      <p class="available" v-else>Item available</p>
       <p class="details">Browar: {{ item.brewery }}</p>
       <p class="details">Gatunek: {{ item.species }}</p>
       <p class="details">Słód: {{ item.malts }}</p>
@@ -44,6 +44,9 @@ export default {
       this.itemsList[this.itemsList.indexOf(item)].quantity--;
       bus.$emit('addItem',item);
     },
+    addWish: function(item){
+      bus.$emit('addWish',item);
+    },
     isAvailable: function(item){
       return this.itemsList[this.itemsList.indexOf(item)].quantity>0 ? true : false;
     },
@@ -52,6 +55,10 @@ export default {
     }
   },
   created(){
+    bus.$on('returnItem',(item)=>{
+      this.itemsList[this.itemsList.indexOf(item)].quantity++;
+    });
+
     let dbRef = firebase.database().ref();
     let value = dbRef.on('value', snap => {
 
@@ -105,9 +112,9 @@ p:nth-child(2n+6){
 }
 .item{
   border-spacing: 20px;
-  display: table-cell;
+  display: inline-block;
   margin: 10px;
-  background-color: rgb(201, 201, 201);
+  background: radial-gradient(rgb(172, 172, 172),rgb(197, 197, 197));
   text-align: center;
   width: 300px;
   padding: 10px;
@@ -137,14 +144,23 @@ button{
   font-weight: bold;
   padding: 5px;
 }
+.available{
+  font-weight: bold;
+  color: rgb(0, 82, 0);
+}
 .notAvailable{
+  font-weight: bold;
   color:red;
 }
 .special{
   background-color: yellow;
+  border-radius: 15px;
 }
 .details{
   text-align: left;
+}
+.price{
+  padding: 20px;
 }
 
 </style>
