@@ -2,7 +2,7 @@
   <div id="cart">
     <p>Koszyk</p>
     <p>Ilosc: {{quantity}}</p>
-    <p>Razem: {{sum | price-convert}} zł</p>
+    <p>Razem: {{sum | price-convert | math-decimal}} zł</p>
     <ul>
       <li v-for="item in itemList">{{item.name | firstLetterUpperCase }} {{item.price.value | math-decimal}} zł<span class="deleteSign"  v-on:click="deleteItem(item)"><font-awesome-icon icon="times-circle" /></span></li>
     </ul>

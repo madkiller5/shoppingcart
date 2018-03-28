@@ -112,7 +112,7 @@ p:nth-child(2n+6){
 }
 .item{
   border-spacing: 20px;
-  display: inline-block;
+  display: inline-block; 
   margin: 10px;
   background: radial-gradient(rgb(172, 172, 172),rgb(197, 197, 197));
   text-align: center;
