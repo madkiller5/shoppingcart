@@ -15,6 +15,7 @@
       <p class="details">Chmiel: {{ item.hop }}</p>
       <p class="details">Kraj pochodzenia: {{ item.origin }}</p>
       <p class="details">Smak: {{ item.flavours }}</p>
+      
     </div>
   </div>
 </template>
