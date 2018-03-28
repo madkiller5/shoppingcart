@@ -120,6 +120,7 @@ p:nth-child(2n+6){
   padding: 10px;
   
 }
+
 .item > img{
   padding: 5px 30px 5px 30px;
   border-radius: 15px;
@@ -143,6 +144,9 @@ button{
   font-size: 10px;
   font-weight: bold;
   padding: 5px;
+}
+button:hover{
+  opacity: 0.8;
 }
 .available{
   font-weight: bold;
